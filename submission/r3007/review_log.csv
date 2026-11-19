@@ -1,0 +1,12 @@
+image,type,verdict,note
+000000006763,instance_merge,confirmed,"Người đàn ông nền trái bị mask Panoptic gộp dính chung với người đứng cạnh, YOLO tách đúng 3 người."
+000000007511,missing_box,confirmed,Người thả diều tiền cảnh kích thước lớn trên bãi biển bị thiếu hoàn toàn box YOLO trong label.
+000000009483,class_swap,confirmed,"Màn hình điều khiển cạnh bàn làm việc thực tế là màn hình TV/monitor, YOLO gán nhầm thành laptop."
+000000013291,instance_merge,confirmed,"Bốn bạn trẻ cầm 4 đĩa ném frisbee riêng biệt, mask Panoptic gộp mất 1 đĩa ném frisbee."
+000000018150,bbox_drift,confirmed,"Người đàn ông đưa pizza cho em bé, box người lớn bị lệch tâm xuống dưới và phóng to kích thước."
+000000018380,bbox_drift,confirmed,"Bát đựng thức ăn trên bàn tiệc gia đình, box YOLO bị nở kích thước hơn 17% so với phân đoạn chuẩn."
+000000019742,category_swap,confirmed,"Bình hoa bằng thủy tinh nghệ thuật trưng bày trên kệ, mask Panoptic gán sai thành baseball bat."
+000000022589,bbox_drift,confirmed,"Hai con cừu qua hàng rào mắt cáo, box cừu phía trước bị trượt tâm ra ngoài rìa thân con cừu."
+000000023272,class_swap,confirmed,"Mèo nằm trên mui xe hơi Mercedes sedan màu đen, YOLO gán nhầm xe hơi thành xe buýt bus."
+000000023781,category_swap,confirmed,"Rổ rau củ quả gồm cà rốt và bông cải, mask Panoptic gán củ cà rốt thành xe máy motorcycle."
+000000023781,instance_merge,rejected,"Sự chênh lệch số lượng cà rốt là do 1 củ đã bị gán nhầm thành motorcycle ở trên, không phải merge."

@@ -1,0 +1,78 @@
+{
+  "candidates": [
+    {
+      "image": "000000006763",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp person: Panoptic có 2 segment nhưng YOLO có 3 box"
+    },
+    {
+      "image": "000000007511",
+      "type": "missing_box",
+      "confidence": "high",
+      "details": "Panoptic thing person (area=14530) không có box Detection nào (max_iou=0.00)"
+    },
+    {
+      "image": "000000009483",
+      "type": "class_swap_or_category_swap",
+      "confidence": "high",
+      "details": "Detection=laptop vs Panoptic=tv (IoU=0.99, confusable=True)",
+      "yolo_class": "laptop",
+      "pan_class": "tv"
+    },
+    {
+      "image": "000000013291",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp frisbee: Panoptic có 3 segment nhưng YOLO có 4 box"
+    },
+    {
+      "image": "000000018150",
+      "type": "bbox_drift",
+      "confidence": "high",
+      "details": "Lệch tâm 0.07*size, IoU=0.81 đối với lớp person"
+    },
+    {
+      "image": "000000018380",
+      "type": "bbox_drift",
+      "confidence": "high",
+      "details": "Lệch tâm 0.07*size, IoU=0.84 đối với lớp bowl"
+    },
+    {
+      "image": "000000019742",
+      "type": "class_swap_or_category_swap",
+      "confidence": "medium",
+      "details": "Detection=vase vs Panoptic=baseball bat (IoU=0.99, confusable=False)",
+      "yolo_class": "vase",
+      "pan_class": "baseball bat"
+    },
+    {
+      "image": "000000022589",
+      "type": "bbox_drift",
+      "confidence": "high",
+      "details": "Lệch tâm 0.21*size, IoU=0.61 đối với lớp sheep"
+    },
+    {
+      "image": "000000023272",
+      "type": "class_swap_or_category_swap",
+      "confidence": "high",
+      "details": "Detection=bus vs Panoptic=car (IoU=1.00, confusable=True)",
+      "yolo_class": "bus",
+      "pan_class": "car"
+    },
+    {
+      "image": "000000023781",
+      "type": "class_swap_or_category_swap",
+      "confidence": "medium",
+      "details": "Detection=carrot vs Panoptic=motorcycle (IoU=0.99, confusable=False)",
+      "yolo_class": "carrot",
+      "pan_class": "motorcycle"
+    },
+    {
+      "image": "000000023781",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp carrot: Panoptic có 5 segment nhưng YOLO có 6 box"
+    }
+  ]
+}
