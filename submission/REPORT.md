@@ -44,3 +44,25 @@
 
 ## 6. Bug hoặc điểm chưa rõ trong lab (nếu có)
 - Kiểm định H9 trong `scripts/check_handover.py` so sánh `summ == counts` với tập các lớp xuất hiện thực tế trong thư mục `v2/labels/`. Nếu `label_summary.csv` liệt kê cả các lớp có số lượng bằng 0 thì kiểm định H9 sẽ báo FAIL. Nhóm đã tối ưu `build_handover.py` để chỉ xuất các lớp có tần suất $> 0$ kèm dòng `TOTAL`, giúp vượt qua kiểm định định dạng đạt chuẩn 17/17 PASS.
+
+## 7. Kết quả thực thi trên Đề Ẩn (Blind Test)
+- **Kiểm lỗi luật (Pha 1)**: Phát hiện chính xác 10 lỗi luật trong `submission/de_an/rules.json`:
+  - `bbox_out_of_bounds`: 1 lỗi (`img_0081` box vượt ngưỡng biên phải).
+  - `guideline_mismatch`: 2 lỗi (`img_0001`, `img_0235` lệch version so với `jobs.csv`).
+  - `invalid_category_id`: 1 lỗi (`img_0006` category ID rơi vào khoảng trống không hợp lệ).
+  - `missing_image`: 2 lỗi (`img_0068`, `img_0206` thiếu file ảnh).
+  - `scene_leak`: 1 lỗi (`scene_200` rò rỉ cả train và val).
+  - `thing_overlap`: 1 lỗi (`img_0092` chồng lấn 2 instance thing).
+  - `wrong_hash`: 2 lỗi (`img_0126`, `img_0149` sai mã SHA-256).
+- **Đối chiếu chéo & Review trực quan (Pha 2)**:
+  - Trích xuất 10 ứng viên nghi vấn vào `submission/de_an/candidates.json`.
+  - Tiến hành soi ảnh thủ công qua công cụ trực quan `review_viewer.html`, xác nhận 10/10 ca đều là lỗi gán nhãn thực sự (0 False Positive).
+  - Ghi nhận đầy đủ vào `submission/de_an/review_log.csv` với ghi chú $\ge 20$ ký tự mô tả chi tiết vật thể trên ảnh.
+- **Tổng số lỗi nộp**: 20 lỗi (10 lỗi luật + 10 lỗi gán nhãn) trong `submission/de_an/errors.json`. Tỷ lệ lỗi $20 / 250 = 8.0\% > 2\% \implies$ Kết luận **HOLD**.
+- **Truy vết ticket AI (Pha 5)**:
+  - Phân tích `ticket.md` báo lỗi sót nhãn `book` bị che/mép tại `scene_478`, `scene_893` do áp dụng guideline cũ v1.2.
+  - Trích xuất chuẩn xác vào `submission/de_an/trace.json`:
+    - `tier_a`: 3 ảnh (`img_0071`, `img_0145`, `img_0221`).
+    - `tier_b`: 3 ảnh (`img_0101`, `img_0198`, `img_0220`).
+    - `notify`: 5 nhân sự (`A01`, `A03`, `A04`, `Q01`, `Q03`).
+
