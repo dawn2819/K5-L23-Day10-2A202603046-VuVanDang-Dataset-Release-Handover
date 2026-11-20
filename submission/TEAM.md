@@ -8,7 +8,7 @@
 | Họ và tên | MSHV | Tài khoản GitHub | Phần chính phụ trách |
 |---|---|---|---|
 | **Vũ Văn Đăng** (Người A) | 2A202603046 | dawn2819 | **Lead Engine:** Xây dựng `validator/validate.py` (9 lỗi luật + module đối chiếu chéo cross-check YOLO ↔ Panoptic), đo F1, review 50% ảnh nghi vấn |
-| **<<Thành viên 2>>** (Người B) | <<MSHV>> | <<GitHub>> | **Lead Pipeline:** Xây dựng công cụ xem ảnh, script tự động bàn giao lô v2 (`handover/`), truy vết (`trace.json`), bảo mật (`security.md`), review 50% ảnh nghi vấn |
+| **Đinh Hồng Hải** (Người B) | 2A202603046-B | dinhhonghai3132004 (Kaito) | **Lead Pipeline:** Xây dựng công cụ xem ảnh, script tự động bàn giao lô v2 (`handover/`), truy vết (`trace.json`), bảo mật (`security.md`), review 50% ảnh nghi vấn |
 
 ---
 
