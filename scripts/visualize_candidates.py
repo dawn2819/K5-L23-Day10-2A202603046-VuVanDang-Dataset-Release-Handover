@@ -105,13 +105,26 @@ def render_candidate_image(delivery_dir: Path, img_name: str, names80, cat_by_id
 
 def main():
     parser = argparse.ArgumentParser(description="Tạo HTML xem ứng viên review")
-    parser.add_argument("--run", required=True, help="Thư mục run (ví dụ: runs/r3007)")
-    parser.add_argument("--out", help="Đường dẫn file HTML đầu ra (mặc định: <run>/review_viewer.html)")
+    parser.add_argument("--run", help="Thư mục run (ví dụ: runs/r3007)")
+    parser.add_argument("--delivery", help="Thư mục delivery (ví dụ: delivery)")
+    parser.add_argument("--candidates", help="File candidates.json")
+    parser.add_argument("--out", help="Đường dẫn file HTML đầu ra")
     args = parser.parse_args()
 
-    run_dir = Path(args.run)
-    delivery_dir = run_dir / "delivery"
-    cand_path = run_dir / "candidates.json"
+    if args.delivery:
+        delivery_dir = Path(args.delivery)
+        cand_path = Path(args.candidates) if args.candidates else delivery_dir.parent / "candidates.json"
+        out_file = Path(args.out) if args.out else Path("review_viewer.html")
+        run_name = delivery_dir.name
+    elif args.run:
+        run_dir = Path(args.run)
+        delivery_dir = run_dir / "delivery" if (run_dir / "delivery").is_dir() else run_dir
+        cand_path = Path(args.candidates) if args.candidates else run_dir / "candidates.json"
+        out_file = Path(args.out) if args.out else run_dir / "review_viewer.html"
+        run_name = run_dir.name
+    else:
+        print("Lỗi: Cần truyền --run hoặc --delivery")
+        return 1
 
     if not cand_path.is_file():
         print(f"Lỗi: Không tìm thấy {cand_path}")
@@ -121,8 +134,6 @@ def main():
     candidates = cands_data.get("candidates", [])
 
     names80, cat_by_id, pan_images, pan_anns, manifest_items = load_dataset(delivery_dir)
-
-    out_file = Path(args.out) if args.out else run_dir / "review_viewer.html"
 
     cards_html = []
     for idx, c in enumerate(candidates, 1):
@@ -151,7 +162,7 @@ def main():
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Visual Review Candidates — {run_dir.name}</title>
+    <title>Visual Review Candidates — {run_name}</title>
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }}
         h1 {{ text-align: center; color: #38bdf8; margin-bottom: 5px; }}
@@ -169,7 +180,7 @@ def main():
 </head>
 <body>
     <h1>🔍 Công Cụ Hỗ Trợ Review Ảnh Nghi Vấn</h1>
-    <div class="subtitle">Tìm thấy {len(candidates)} ứng viên nghi vấn cần mắt người xác nhận cho {run_dir.name}</div>
+    <div class="subtitle">Tìm thấy {len(candidates)} ứng viên nghi vấn cần mắt người xác nhận cho {run_name}</div>
     <div class="container">
         {''.join(cards_html)}
     </div>

@@ -1,0 +1,11 @@
+image,type,verdict,note
+img_0012,category_swap,confirmed,Ghế ăn bằng gỗ quanh bàn ăn tròn, mask Panoptic gán sai thành ghế dài bench
+img_0027,category_swap,confirmed,Đèn giao thông màu xanh treo trên đường phố, mask Panoptic gán sai thành con voi elephant
+img_0044,bbox_drift,confirmed,Người lướt sóng trên mặt biển, box người của YOLO bị trôi lệch tâm 0.23*size
+img_0055,instance_merge,confirmed,Dãy xe ô tô trên đường phố, mask Panoptic gộp dính 2 xe ô tô sát nhau thành 1 segment
+img_0061,instance_merge,confirmed,Xe bán tải trắng bên trái và xe tải bên phải bị mask Panoptic gộp trải dài ngang ảnh
+img_0124,class_swap,confirmed,Chim hải âu đang bay trên bãi biển và mặt biển, YOLO gán nhầm thành con diều kite
+img_0144,bbox_drift,confirmed,Con mèo vằn ngồi trước màn hình TV, box YOLO của con mèo bị trôi lệch tâm 0.12*size
+img_0157,instance_merge,confirmed,Bàn ghế sân vườn có bàn gỗ và bàn dã ngoại, mask Panoptic gộp 2 ghế dài bench thành 1
+img_0191,missing_box,confirmed,Người trượt tuyết mặc áo đỏ ở tiền cảnh bị thiếu hoàn toàn box YOLO trong label
+img_0217,class_swap,confirmed,Đĩa thức ăn có các lát táo vỏ đỏ cắt miếng, YOLO gán nhầm lát táo thành quả cam orange

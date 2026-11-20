@@ -1,0 +1,72 @@
+{
+  "candidates": [
+    {
+      "image": "img_0012",
+      "type": "class_swap_or_category_swap",
+      "confidence": "high",
+      "details": "Detection=chair vs Panoptic=bench (IoU=0.98, confusable=True)",
+      "yolo_class": "chair",
+      "pan_class": "bench"
+    },
+    {
+      "image": "img_0027",
+      "type": "class_swap_or_category_swap",
+      "confidence": "medium",
+      "details": "Detection=traffic light vs Panoptic=elephant (IoU=0.97, confusable=False)",
+      "yolo_class": "traffic light",
+      "pan_class": "elephant"
+    },
+    {
+      "image": "img_0044",
+      "type": "bbox_drift",
+      "confidence": "high",
+      "details": "Lệch tâm 0.23*size, IoU=0.55 đối với lớp person"
+    },
+    {
+      "image": "img_0055",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp car: Panoptic có 8 segment nhưng YOLO có 9 box"
+    },
+    {
+      "image": "img_0061",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp truck: Panoptic có 1 segment nhưng YOLO có 2 box"
+    },
+    {
+      "image": "img_0124",
+      "type": "class_swap_or_category_swap",
+      "confidence": "high",
+      "details": "Detection=kite vs Panoptic=bird (IoU=0.99, confusable=True)",
+      "yolo_class": "kite",
+      "pan_class": "bird"
+    },
+    {
+      "image": "img_0144",
+      "type": "bbox_drift",
+      "confidence": "high",
+      "details": "Lệch tâm 0.12*size, IoU=0.70 đối với lớp cat"
+    },
+    {
+      "image": "img_0157",
+      "type": "instance_merge",
+      "confidence": "high",
+      "details": "Lớp bench: Panoptic có 2 segment nhưng YOLO có 3 box"
+    },
+    {
+      "image": "img_0191",
+      "type": "missing_box",
+      "confidence": "high",
+      "details": "Panoptic thing person (area=4564) không có box Detection nào (max_iou=0.06)"
+    },
+    {
+      "image": "img_0217",
+      "type": "class_swap_or_category_swap",
+      "confidence": "high",
+      "details": "Detection=orange vs Panoptic=apple (IoU=1.00, confusable=True)",
+      "yolo_class": "orange",
+      "pan_class": "apple"
+    }
+  ]
+}
