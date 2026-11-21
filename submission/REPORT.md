@@ -1,4 +1,4 @@
-# Báo cáo nhóm Vũ Văn Đăng — Day 10 Lab: Bàn giao Dataset & Truy vết
+# Báo cáo nhóm 2A (Vũ Văn Đăng & Đinh Hồng Hải) — Day 10 Lab: Bàn giao Dataset & Truy vết
 
 ## 1. Số liệu luyện tập
 - F1 theo seed 3007:
@@ -38,9 +38,10 @@
 - **Hash KHÔNG chứng minh được**: Tính chính xác về mặt ngữ nghĩa (semantic validity) của dữ liệu. Một tệp nhãn bị gán sai hoàn toàn nội dung (ví dụ dán nhãn người thành xe hơi, box bị trôi lệch một nửa) vẫn có một mã băm SHA-256 hoàn toàn hợp lệ nếu không ai đụng vào file đó sau khi lưu.
 
 ## 5. Truy vết
-- **Tiêu chí tầng A (Tier A)**: Toàn bộ các ảnh thuộc các cảnh (scene) mà ticket của team AI đã báo lỗi (`scene_197`, `scene_309`). Đây là các ảnh bị ảnh hưởng trực tiếp bởi sự cố gán nhãn sai quy chuẩn.
-- **Tiêu chí tầng B (Tier B)**: Các ảnh khác trong lô được gán bởi cùng annotator hoặc kiểm bởi cùng reviewer phụ trách các cảnh Tier A (các mã nhân sự được cảnh báo `A01`, `Q02`). Đây là vùng nghi vấn mở rộng có nguy cơ lặp lại lỗi hệ thống.
-- **Vì sao lấy guideline theo job**: Trường `guideline` trong `metadata.json` từng file ảnh có thể bị gán nhầm hoặc lệch phiên bản do lỗi nhập liệu (lỗi luật `guideline_mismatch`). Ngược lại, `jobs.csv` là bảng kê phân công công việc chính thức từ cấp quản lý dự án, phản ánh đúng phiên bản chuẩn mà kíp làm việc đó phải tuân thủ.
+- **Tiêu chí tầng A (Tier A)**: Các ảnh nằm trong những cảnh (scene) mà ticket của team AI báo lỗi, thuộc **job theo guideline cũ (`v1.2`)** trong `jobs.csv`, và có ít nhất một **box detection** thuộc lớp bị đổi quy tắc trong `changelog.md` (trên seed 3007: 2 ảnh `000000002685`, `000000009590`).
+- **Tiêu chí tầng B (Tier B)**: Các ảnh khác trong lô thỏa mãn **cùng điều kiện** (thuộc job theo guideline cũ `v1.2` và có ít nhất một box detection thuộc lớp bị đổi quy tắc) nhưng chưa được team AI báo trong ticket (trên seed 3007: 4 ảnh `000000005193`, `000000006471`, `000000007574`, `000000008021`).
+- **Nhân sự cần thông báo (`notify`)**: Tập hợp toàn bộ mã `annotator` và `reviewer` (lấy từ `jobs.csv`) của các job chứa ảnh thuộc tầng A và tầng B (trên seed 3007: 5 nhân sự `A02`, `A04`, `A05`, `Q01`, `Q03`).
+- **Vì sao lấy guideline theo job**: Trường `guideline_version` trong `metadata.json` từng file ảnh có thể bị gán nhầm hoặc lệch phiên bản do lỗi nhập liệu (lỗi luật `guideline_mismatch`). Ngược lại, `jobs.csv` là bảng kê phân công công việc chính thức từ cấp quản lý dự án, phản ánh đúng phiên bản chuẩn mà kíp làm việc đó phải tuân thủ.
 
 ## 6. Bug hoặc điểm chưa rõ trong lab (nếu có)
 - Kiểm định H9 trong `scripts/check_handover.py` so sánh `summ == counts` với tập các lớp xuất hiện thực tế trong thư mục `v2/labels/`. Nếu `label_summary.csv` liệt kê cả các lớp có số lượng bằng 0 thì kiểm định H9 sẽ báo FAIL. Nhóm đã tối ưu `build_handover.py` để chỉ xuất các lớp có tần suất $> 0$ kèm dòng `TOTAL`, giúp vượt qua kiểm định định dạng đạt chuẩn 17/17 PASS.
